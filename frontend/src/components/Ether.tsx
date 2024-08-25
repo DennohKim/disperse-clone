@@ -70,7 +70,7 @@ const Ether = ({ address }: EtherProps) => {
         const recipients = recipientsData.map((recipient) => recipient.address);
         const values = recipientsData.map((recipient) => recipient.value);
 
-        console.log("Dispersing ETH now");
+        console.log("Dispersing CELO now");
         console.log(total);
         const txn = await disperseContract.disperseEther(recipients, values, {
           value: total,
@@ -84,10 +84,10 @@ const Ether = ({ address }: EtherProps) => {
           hash: txn.hash,
           status: "success",
         });
-        console.log("Completed dispersing ether");
+        console.log("Completed dispersing celo");
       }
     } catch (error) {
-      console.log("error occured while dispersing ether");
+      console.log("error occured while dispersing celo");
       console.log(error);
     }
   };
@@ -104,11 +104,11 @@ const Ether = ({ address }: EtherProps) => {
 
   return (
     <p className="pt-4 text-l font-light italic">
-      you have {ethBalance} <span className="pt-1 text-sm">ETH</span>
+      you have {ethBalance} <span className="pt-1 text-sm">CELO</span>
       <Recipients
         textValue={textValue}
         setTextValue={setTextValue}
-        tokenSymbol={"ETH"}
+        tokenSymbol={"CELO"}
       />
       {recipientsData.length > 0 && (
         <ConfirmEther
