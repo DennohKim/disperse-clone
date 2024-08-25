@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { NetworkContext } from "../App";
-import EthereumSVG from "../assets/ethereum.svg";
+import ckes from "../assets/cKES.png";
 
 type HeaderProps = {
   address: string | null;
@@ -13,7 +13,7 @@ const Header = ({ address }: HeaderProps) => {
     <div>
       <div className="flex space-between">
         <img
-          src={EthereumSVG}
+          src={ckes}
           style={{
             width: "50px",
             height: "50px",
@@ -30,7 +30,7 @@ const Header = ({ address }: HeaderProps) => {
       </div>
       <div></div>
       <p className="pt-8 text-l font-light">
-        <i>verb</i> distribute ether or tokens to multiple addresses
+        <i>verb</i> distribute celo tokens to multiple addresses
       </p>
     </div>
   );

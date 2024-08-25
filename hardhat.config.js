@@ -3,11 +3,15 @@ require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
 const MUMBAI_RPC =
   process.env.MUMBAI_RPC || "https://rpc-mumbai.maticvigil.com	";
-const GOERLI_RPC = process.env.GOERLI_RPC || "https://rpc.ankr.com/eth_goerli	";
+  const GOERLI_RPC = process.env.GOERLI_RPC || "https://rpc.ankr.com/eth_goerli	";
+  const CELO_MAINNET_RPC = process.env.CELO_MAINNET_RPC || "https://forno.celo.org";
+
+
 const SKALE_RPC = process.env.SKALE_RPC;
 const POLYGON_RPC = process.env.POLYGON_RPC || "https://polygon-rpc.com	";
 const ETHERSCAN_KEY = process.env.ETHERSCAN_KEY;
 const privateKey = process.env.PRIVATE_KEY;
+
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
@@ -42,6 +46,10 @@ module.exports = {
     },
     polygon: {
       url: POLYGON_RPC,
+      accounts: [privateKey],
+    },
+    celo: {
+      url: CELO_MAINNET_RPC,
       accounts: [privateKey],
     },
     europaTestnet: {

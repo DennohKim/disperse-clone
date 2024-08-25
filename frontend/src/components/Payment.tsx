@@ -29,7 +29,7 @@ const Payment = ({ address }: PaymentProps) => {
   const { chainId } = useContext(NetworkContext);
   const [currentLink, setCurrentLink] = useState<string | null>(null);
   const [ethBalance, setEthBalance] = useState<string | null>(null);
-  const [tokenAddress, setTokenAddress] = useState("");
+  const [tokenAddress, setTokenAddress] = useState("0x456a3D042C0DbD3db53D5489e98dFb038553B0d0");
   const [tokenDetails, setTokenDetails] =
     useState<TokenDetails>(defaultTokenDetails);
   const [textValue, setTextValue] = useState("");
@@ -200,7 +200,7 @@ const Payment = ({ address }: PaymentProps) => {
           }`}
         >
           {" "}
-          ether{" "}
+          celo{" "}
         </span>
         or
         <span
