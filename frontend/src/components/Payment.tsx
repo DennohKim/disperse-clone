@@ -200,7 +200,7 @@ const Payment = ({ address }: PaymentProps) => {
           }`}
         >
           {" "}
-          celo{" "}
+          cKES{" "}
         </span>
         or
         <span
@@ -210,7 +210,7 @@ const Payment = ({ address }: PaymentProps) => {
           }`}
         >
           {" "}
-          token
+          any celo token
         </span>
       </h3>
 
