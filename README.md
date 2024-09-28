@@ -1,58 +1,75 @@
-# Disperse app clone
+# Disperse App for cKES
 
-Disperse app lets you disperse any erc20 tokens or ethers to a number of addresses using a single transaction.
+## cKES Hackathon by Mento Submission 
 
-## Deploy to new network ⛓️
+Disperse app lets you distribute CELO tokens like cKES to multiple addresses using a single transaction on the Celo blockchain.
+
+## Features
+
+- Distribute cKES or any ERC20 token on Celo to multiple addresses in one transaction
+- Pay gas fees with CELO or cKES (Celo Kenyan Shilling stablecoin)
+- User-friendly interface for inputting recipient addresses and amounts
+- Support for various input formats
+- Real-time transaction status updates
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14.x or later recommended)
+- npm or yarn
+- MetaMask or any Web3 wallet with Celo support
+
+### Installation
 
 1. Clone the repository:
-   `git clone https://github.com/rajkharvar/disperse-clone.git`
+   ```
+   git clone https://github.com/your-username/disperse-celo-clone.git
+   ```
 
 2. Install the dependencies:
+   ```
+   npm install
+   # or
+   yarn install
+   ```
 
-```bash
-npm start
-# or
-yarn start
-```
-
-3. Modify the hardhat.config.js file to include the new network. Refer to the documentation at https://hardhat.org/hardhat-runner/docs/config for guidance.
+3. Create a `.env` file in the root directory and add your configuration:
+   ```
+   CELO_MAINNET_RPC=https://forno.celo.org
+   PRIVATE_KEY=your_private_key_here
+   
+   ```
 
 4. Deploy the contract:
+   ```
+   npx hardhat run scripts/deploy.js --network celo
+   ```
 
-```
-npx hardhat scripts/deploy.js --network [NETWORK]
-```
+5. Update the `disperseAddress` in `frontend/src/utils/constants.ts` with the newly deployed contract address.
 
-5. Adding support in the frontend:
+6. Start the frontend development server:
+   ```
+   cd frontend
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-   - Open the `constants.ts` file in the `frontend/utils` directory.
-   - Include the chain information and Disperse contract address by adding the following code snippet in `supportedChains` array:
-     ```javascript
-     {
-         chainId: <chain_id>,
-         disperseAddress: <disperse_address>,
-         blockExplorer: <block_explorer_url>,
-         name: <chain_name>,
-     }
-     ```
-     Replace `<chain_id>` with the ID of the new chain, `<disperse_address>` with the address of the deployed Disperse contract, `<block_explorer_url>` with the URL of the block explorer for the chain, and `<chain_name>` with the name of the chain.
+## Usage
 
-6. Verifying the contract with the relevant chain block explorer:
+1. Connect your Web3 wallet (ensure it's connected to the Celo network).
+2. Enter recipient addresses and amounts in the text area.
+4. Click "Disperse" to send the transaction.
+5. Confirm the transaction in your wallet.
+6. Wait for the transaction to be processed and check the status.
 
-   - Follow the instructions provided in the Hardhat documentation at https://hardhat.org/hardhat-runner/docs/guides/verifying to verify the deployed contract on the new network's block explorer.
 
-7. Updating the README:
-   - Edit the README file of the project.
-   - Add the chain name and hyperlink for the Disperse contract on the block explorer in Supported Network and addresses in [Supported Networks and addresses](#supported-networks-and-addresses) section
+## License
 
-## Supported Networks and addresses
+This project is licensed under the MIT License.
 
-| Network          | Disperse contract address                                                                                                                                                     |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Mumbai           | [0xaf6f4A737188571d128477DEe81d54Bc63De6d80](https://mumbai.polygonscan.com/address/0xaf6f4A737188571d128477DEe81d54Bc63De6d80)                                               |
-| Goerli           | [0xD286f3D834E6030F178C395C9ba33d32B427cAD3](https://goerli.etherscan.io/address/0xD286f3D834E6030F178C395C9ba33d32B427cAD3)                                                  |
-| Razor Schain     | [0x3bAB943FE31B0F90c1E4c2733113E336eBAC4Bc1](https://turbulent-unique-scheat.explorer.mainnet.skalenodes.com/address/0x3bAB943FE31B0F90c1E4c2733113E336eBAC4Bc1/transactions) |
-| Polygon          | [0x0461950C8664A38b6b1D6599420CA9c50a714B56](https://polygonscan.com/address/0x0461950C8664A38b6b1D6599420CA9c50a714B56)                                                      |
-| Skale Staging    | [0x553a0a6FCe2943F6901f783f381292C567038ddF](https://staging-aware-chief-gianfar.explorer.staging-v3.skalenodes.com/address/0x553a0a6FCe2943F6901f783f381292C567038ddF)       |
-| Europa Testnet   | [0x596df15B63d0f9CB9690BbdAecE64db59637Bf22](https://juicy-low-small-testnet.explorer.testnet.skalenodes.com/address/0x596df15B63d0f9CB9690BbdAecE64db59637Bf22)              |
-| Optimism Sepolia | [0xC181C71991FFfE9952B023835DE79D7EcC67AE9B](https://sepolia-optimism.etherscan.io/address/0xC181C71991FFfE9952B023835DE79D7EcC67AE9B)                                        |
+## Acknowledgements
+
+- Built with [Hardhat](https://hardhat.org/), [React](https://reactjs.org/), and [ethers.js](https://docs.ethers.io/)
+- Celo integration powered by [Celo SDK](https://docs.celo.org/developer/)

@@ -28,7 +28,7 @@ const Payment = ({ address }: PaymentProps) => {
   };
   const { chainId } = useContext(NetworkContext);
   const [currentLink, setCurrentLink] = useState<string | null>(null);
-  const [ethBalance, setEthBalance] = useState<string | null>(null);
+  const [celoBalance, setCeloBalance] = useState<string | null>(null);
   const [tokenAddress, setTokenAddress] = useState("0x456a3D042C0DbD3db53D5489e98dFb038553B0d0");
   const [tokenDetails, setTokenDetails] =
     useState<TokenDetails>(defaultTokenDetails);
@@ -44,12 +44,12 @@ const Payment = ({ address }: PaymentProps) => {
   const networkInfo = getNetworkInfo(chainId);
   const disperseAddress = networkInfo?.disperseAddress;
 
-  const getEthBalance = async (ethereum: any) => {
-    if (!ethBalance) {
+  const getCeloBalance = async (ethereum: any) => {
+    if (!celoBalance) {
       const provider = new ethers.providers.Web3Provider(ethereum);
       const balance = await provider.getBalance(address);
-      const ethBalance = ethers.utils.formatEther(balance);
-      setEthBalance(ethBalance);
+      const celoBalance = ethers.utils.formatEther(balance);
+      setCeloBalance(celoBalance);
     }
   };
 
@@ -88,7 +88,7 @@ const Payment = ({ address }: PaymentProps) => {
   useEffect(() => {
     const { ethereum } = window;
     if (ethereum) {
-      getEthBalance(ethereum);
+      getCeloBalance(ethereum);
     }
   }, [currentLink]);
 
@@ -254,7 +254,7 @@ const Payment = ({ address }: PaymentProps) => {
           )}
           {!isTokenLoading && tokenDetails.name && (
             <>
-              <p className="pt-4 text-l font-light">
+              <p className="pt-4 text-l font-light text-bold">
                 you have {tokenDetails.balance}{" "}
                 <span className="pt-1 text-xs">{tokenDetails.symbol}</span> (
                 {tokenDetails.name})

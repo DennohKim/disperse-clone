@@ -13,8 +13,8 @@ type EtherProps = {
   address: string;
 };
 
-const Ether = ({ address }: EtherProps) => {
-  const [ethBalance, setEthBalance] = useState<string | null>(null);
+const Celo = ({ address }: EtherProps) => {
+  const [celoBalance, setCeloBalance] = useState<string | null>(null);
   const [textValue, setTextValue] = useState("");
   const [total, setTotal] = useState<ethers.BigNumber | null>(null);
   const [recipientsData, setRecipientsData] = useState<RecipientInfo[]>([]);
@@ -24,18 +24,18 @@ const Ether = ({ address }: EtherProps) => {
   const networkInfo = getNetworkInfo(chainId);
   const disperseAddress = networkInfo?.disperseAddress;
 
-  const getEthBalance = async () => {
+  const getCeloBalance = async () => {
     const { ethereum } = window;
-    if (!ethBalance) {
+    if (!celoBalance) {
       const provider = new ethers.providers.Web3Provider(ethereum);
       const balance = await provider.getBalance(address);
-      const ethBalance = ethers.utils.formatEther(balance);
-      setEthBalance(ethBalance);
+      const celoBalance = ethers.utils.formatEther(balance);
+      setCeloBalance(celoBalance);
     }
   };
 
   useEffect(() => {
-    getEthBalance();
+    getCeloBalance();
   }, []);
 
   useEffect(() => {
@@ -93,8 +93,8 @@ const Ether = ({ address }: EtherProps) => {
   };
 
   useEffect(() => {
-    if (ethBalance && total) {
-      const tokenBalance = ethers.utils.parseEther(ethBalance);
+    if (celoBalance && total) {
+      const tokenBalance = ethers.utils.parseEther(celoBalance);
       const remaining = tokenBalance.sub(total);
       setRemaining(ethers.utils.formatEther(remaining));
     } else {
@@ -104,7 +104,7 @@ const Ether = ({ address }: EtherProps) => {
 
   return (
     <p className="pt-4 text-l font-light italic">
-      you have {ethBalance} <span className="pt-1 text-sm">CELO</span>
+      you have {celoBalance} <span className="pt-1 text-sm">CELO</span>
       <Recipients
         textValue={textValue}
         setTextValue={setTextValue}
@@ -115,7 +115,7 @@ const Ether = ({ address }: EtherProps) => {
           recipientsData={recipientsData}
           total={total}
           disperse={disperseEther}
-          tokenBalance={ethBalance}
+          tokenBalance={celoBalance}
           remaining={remaining}
           txStatus={txStatus}
         />
@@ -124,4 +124,4 @@ const Ether = ({ address }: EtherProps) => {
   );
 };
 
-export default Ether;
+export default Celo;
